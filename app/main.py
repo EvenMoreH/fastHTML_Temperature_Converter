@@ -1,47 +1,81 @@
 from fasthtml.common import * # type: ignore
-from fasthtml.common import (Form, Fieldset, Label, Input, Button, Html, Head, Body, Div, P, Title, Titled, A)
+from fasthtml.common import (
+    Form, Fieldset, Label, Input, Button, Html, Head, Body, Div, P, Title, Titled, A
+)
+
 import re
 
 app, rt = fast_app() # type: ignore
 
 temperature_form = Form(
-    method = "post",
-    action = "/convert"
+    method="post",
+    action="/convert"
     )(
     Fieldset(
         Label("Temperature", Input(
             name="temperature",
             type="text",
-            pattern="^-?\d+(\.\d+)?$",  # Used as Regex for a float with optional negative sign
+            pattern="^-?\d+(\.\d+)?$",
             title="\nEnter a valid floating-point number",
-            required=True
+            required=True,
+            style="font-size: clamp(16px, 2vw + 0.5rem, 24px);"
             )
         ),
-        style="padding: 10px; font-variant-caps: all-petite-caps; font-size: 24"
+        style="padding: 10px; font-variant-caps: all-petite-caps; font-size: clamp(36px, 3vw + 0.75rem, 48px); line-height: 1.2;"
     ),
     Div(
-        Button("Kelvin -> Celsius", name="conversion", value="kc", type="submit"),
-        style="padding: 10px"
+        Button("Kelvin -> Celsius",
+            name="conversion",
+            value="kc",
+            type="submit",
+            style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+        ),
+        style="padding: 10px;"
     ),
     Div(
-        Button("Kelvin -> Fahrenheit", name="conversion", value="kf", type="submit"),
-        style="padding: 10px"
+        Button("Kelvin -> Fahrenheit",
+            name="conversion",
+            value="kf",
+            type="submit",
+            style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+        ),
+        style="padding: 10px;"
     ),
     Div(
-        Button("Fahrenheit -> Celsius", name="conversion", value="fc", type="submit"),
-        style="padding: 10px"
+        Button("Fahrenheit -> Celsius",
+            name="conversion",
+            value="fc",
+            type="submit",
+            style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+        ),
+        style="padding: 10px;"
     ),
     Div(
-        Button("Fahrenheit -> Kelvin", name="conversion", value="fk", type="submit"),
-        style="padding: 10px"
+        Button("Fahrenheit -> Kelvin",
+            name="conversion",
+            value="fk",
+            type="submit",
+            style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+        ),
+        style="padding: 10px;"
     ),
     Div(
-        Button("Celsius -> Fahrenheit", name="conversion", value="cf", type="submit"),
-        style="padding: 10px"
+        Button("Celsius -> Fahrenheit",
+            name="conversion",
+            value="cf",
+            type="submit",
+            style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+        ),
+        style="padding: 10px;"
     ),
     Div(
-        Button("Celsius -> Kelvin", name="conversion", value="ck", type="submit"),
-        style="padding: 10px"
+        Button("Celsius -> Kelvin",
+            name="conversion",
+            value="ck",
+            type="submit",
+            style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+        ),
+        style="padding: 10px;"
     ),
 )
 
@@ -71,8 +105,9 @@ def convert_temperature(temperature:str, conversion:str):
                 P("Please enter a valid floating-point number for the temperature."),
                 Button(
                     A("Return to Form", href="/"),
-                    style="padding: 10px"
-                )
+                    style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+                ),
+                style="padding: 10px"
             )
         )
 
@@ -105,12 +140,19 @@ def convert_temperature(temperature:str, conversion:str):
             Title("Conversion Results")
         ),
         Body(
-            Titled("Conversion Results"),
-            P(result),
+            Titled(
+                "Conversion Results",
+                style="font-variant-caps: all-petite-caps; font-size: clamp(24px, 3vw + 0.75rem, 24px);"
+            ),
+            P(
+                result,
+                style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+            ),
             Button(
                 A("Return to Form", href="/"),
-                style="padding: 10px"
-            )
+                style="font-size: clamp(14px, 1.5vw + 0.5rem, 24px); font-weight: 500;"
+            ),
+            style="padding: 10px"
         )
     )
 
