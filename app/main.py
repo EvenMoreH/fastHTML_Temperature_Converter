@@ -5,7 +5,7 @@ from fasthtml.common import (
 
 import re
 
-app, rt = fast_app(static_path="app/static") # type: ignore
+app, rt = fast_app(static_path="static") # type: ignore
 
 
 temperature_form = Form(
@@ -86,8 +86,8 @@ def homepage():
         Head(
             Title("Temperature Converter"),
             Link(rel="stylesheet", href="styles.css"),
-            Link(rel="icon", href="/images/favicon.ico", type="image/x-icon"),
-            Link(rel="icon", href="/images/favicon.png", type="image/png"),
+            Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
+            Link(rel="icon", href="images/favicon.png", type="image/png"),
         ),
         Body(
             Div(
@@ -104,8 +104,8 @@ def convert_temperature(temperature:str, conversion:str):
             Head(
                 Title("Error"),
                 Link(rel="stylesheet", href="styles.css"),
-                Link(rel="icon", href="/images/favicon.ico", type="image/x-icon"),
-                Link(rel="icon", href="/images/favicon.png", type="image/png"),
+                Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
+                Link(rel="icon", href="images/favicon.png", type="image/png"),
             ),
             Body(
                 Titled("Invalid Input"),
@@ -146,8 +146,8 @@ def convert_temperature(temperature:str, conversion:str):
         Head(
             Title("Conversion Results"),
             Link(rel="stylesheet", href="styles.css"),
-            Link(rel="icon", href="/images/favicon.ico", type="image/x-icon"),
-            Link(rel="icon", href="/images/favicon.png", type="image/png"),
+            Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
+            Link(rel="icon", href="images/favicon.png", type="image/png"),
         ),
         Body(
             Titled(
