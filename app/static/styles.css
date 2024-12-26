@@ -1,0 +1,33 @@
+:root {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.button {
+    font-size: clamp(24px, 2vw + 1rem, 38px);
+    font-variant-caps: all-petite-caps;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.div {
+    padding: 10px;
+    font-variant-caps: all-petite-caps;
+}
+
+.label {
+    font-size: clamp(24px, 2vw + 1rem, 38px);
+    font-variant-caps: all-petite-caps;
+}
+
+.mainLabel {
+    font-size: clamp(28px, 2vw + 1rem, 46px);
+    font-variant-caps: all-petite-caps;
+}
+
+.inputField {
+    font-size: clamp(20px, 2vw + 1rem, 32px);
+    font-variant-caps: all-petite-caps;
+}
