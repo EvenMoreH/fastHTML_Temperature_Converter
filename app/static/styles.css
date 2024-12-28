@@ -1,33 +1,101 @@
-:root {
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    --font-size: clamp(1rem, 1.2vw, 2rem);
+    background-color: rgb(30, 30, 30);
+    color: whitesmoke;
+    accent-color: #292929;
+    transform: translateY(-4vh);
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    font-weight: 500;
-}
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size);
+  }
 
-.button {
-    font-size: clamp(24px, 2vw + 1rem, 38px);
-    font-variant-caps: all-petite-caps;
-    padding-bottom: 7px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
+  form {
+    font-size: var(--font-size);
+  }
 
-.div {
-    padding: 10px;
-    font-variant-caps: all-petite-caps;
-}
+  .browse {
+    font-size: var(--font-size);
+  }
 
-.label {
-    font-size: clamp(24px, 2vw + 1rem, 38px);
+  .select {
+    font-size: calc(var(--font-size) * 1.7);
     font-variant-caps: all-petite-caps;
-}
+  }
 
-.mainLabel {
-    font-size: clamp(28px, 2vw + 1rem, 46px);
-    font-variant-caps: all-petite-caps;
-}
+  /* Wrapper for Content */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-.inputField {
-    font-size: clamp(20px, 2vw + 1rem, 32px);
+  /* Ensure Mobile Responsiveness */
+  @media (max-width: 768px) {
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        --font-size: clamp(1rem, 2vw, 2rem);
+        background-color: rgb(30, 30, 30);
+        color: whitesmoke;
+        accent-color: #292929;
+        transform: translateY(-2vh);
+    }
+
+    .container {
+        padding: 0.5rem;
+      }
+  }
+
+  /* Optional Additional Styling for Aesthetics */
+  h1, p {
+    margin: 1rem 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  A {
+    color: whitesmoke;
+    font-size: var(--font-size);
+    text-decoration: none;
+    border-radius: 0.4rem;
+    border-color: whitesmoke;
+    background: #535557;
     font-variant-caps: all-petite-caps;
-}
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border-color: whitesmoke;
+    background: #535557;
+    color: whitesmoke;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: var(--font-size);
+    font-variant-caps: all-petite-caps;
+  }

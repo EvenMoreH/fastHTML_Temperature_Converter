@@ -1,99 +1,79 @@
 from fasthtml.common import * # type: ignore
 from fasthtml.common import (
-    Form, Fieldset, Label, Input, Button, Html, Head, Body, Div, P, Title, Titled, A, Link
+    Form, Label, Input, Button, Html, Head, Body, Div, P, Title, Titled, A, Link, Meta, H1
 )
-
 import re
 
+# for docker
 app, rt = fast_app(static_path="static") # type: ignore
 
+# for local
+# app, rt = fast_app(static_path="app/static") # type: ignore
 
 temperature_form = Form(
     method="post",
     action="/convert"
     )(
-    Fieldset(
-        Label("Temperature:", Input(
+        Label("Temperature", cls="select", style="padding-bottom: 0.35rem; font-variant-caps: petite-caps;"),
+        Input(
             name="temperature",
             type="text",
             pattern="^-?\d+(\.\d+)?$",
             title="\nEnter a valid floating-point number",
             required=True,
-            cls="inputField"
-            )
+            cls="select",
+            style="margin-bottom: 1.5rem; width: clamp(225px, 20vw, 400px);"
         ),
-        cls="mainLabel"
-    ),
-    Div(
-        Button("Kelvin -> Celsius",
-            name="conversion",
-            value="kc",
-            type="submit",
-            cls="button"
-        ),
-        cls="div"
-    ),
-    Div(
-        Button("Kelvin -> Fahrenheit",
-            name="conversion",
-            value="kf",
-            type="submit",
-            cls="button"
-        ),
-        cls="div"
-    ),
-    Div(
-        Button("Fahrenheit -> Celsius",
+        Button("Fahrenheit → Celsius",
             name="conversion",
             value="fc",
             type="submit",
-            cls="button"
+            style="margin: 1rem; width: clamp(225px, 20vw, 400px);"
         ),
-        cls="div"
-    ),
-    Div(
-        Button("Fahrenheit -> Kelvin",
+        Button("Fahrenheit → Kelvin",
             name="conversion",
             value="fk",
             type="submit",
-            cls="button"
+            style="margin: 1rem; width: clamp(225px, 20vw, 400px);"
         ),
-        cls="div"
-    ),
-    Div(
-        Button("Celsius -> Fahrenheit",
+        Button("Celsius → Fahrenheit",
             name="conversion",
             value="cf",
             type="submit",
-            cls="button"
+            style="margin: 1rem; width: clamp(225px, 20vw, 400px);"
         ),
-        cls="div"
-    ),
-    Div(
-        Button("Celsius -> Kelvin",
+        Button("Celsius → Kelvin",
             name="conversion",
             value="ck",
             type="submit",
-            cls="button"
+            style="margin: 1rem; width: clamp(225px, 20vw, 400px);"
         ),
-        cls="div"
-    ),
-)
+        Button("Kelvin → Celsius",
+            name="conversion",
+            value="kc",
+            type="submit",
+            style="margin: 1rem; width: clamp(225px, 20vw, 400px);"
+        ),
+        Button("Kelvin → Fahrenheit",
+            name="conversion",
+            value="kf",
+            type="submit",
+            style="margin: 1rem; width: clamp(225px, 20vw, 400px);"
+        ),
+        cls="container",
+    )
 
 @rt("/")
 def homepage():
     return Html(
         Head(
             Title("Temperature Converter"),
+            Meta(name="viewport", content="width=device-width, initial-scale=1"),
             Link(rel="stylesheet", href="styles.css"),
             Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
             Link(rel="icon", href="images/favicon.png", type="image/png"),
         ),
-        Body(
-            Div(
-                temperature_form,
-            )
-        )
+        Body(temperature_form)
     )
 
 @rt("/convert", methods=["POST"])
@@ -103,6 +83,7 @@ def convert_temperature(temperature:str, conversion:str):
         return Html(
             Head(
                 Title("Error"),
+                Meta(name="viewport", content="width=device-width, initial-scale=1"),
                 Link(rel="stylesheet", href="styles.css"),
                 Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
                 Link(rel="icon", href="images/favicon.png", type="image/png"),
@@ -112,9 +93,7 @@ def convert_temperature(temperature:str, conversion:str):
                 P("Please enter a valid floating-point number for the temperature."),
                 Button(
                     A("Return to Form", href="/"),
-                    cls="label"
                 ),
-                cls="div"
             )
         )
 
@@ -145,27 +124,21 @@ def convert_temperature(temperature:str, conversion:str):
     return Html(
         Head(
             Title("Conversion Results"),
+            Meta(name="viewport", content="width=device-width, initial-scale=1"),
             Link(rel="stylesheet", href="styles.css"),
             Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
             Link(rel="icon", href="images/favicon.png", type="image/png"),
         ),
         Body(
-            Titled(
-                "Conversion Results",
-                cls="label"
-            ),
-            P(
-                result,
-                cls="label"
-            ),
+            H1("Conversion Results"),
+            P(result),
             Button(
                 A("Return to Form", href="/"),
-                cls="button"
-            ),
-            cls="div"
+                style="margin-top: 1.25rem;",
+            )
         )
     )
 
 if __name__ == '__main__':
     # Important: Use host='0.0.0.0' to make the server accessible outside the container
-    serve(host='0.0.0.0', port=5001) # type: ignore
+    serve(host='0.0.0.0', port=5002) # type: ignore
