@@ -1,14 +1,14 @@
 from fasthtml.common import * # type: ignore
 from fasthtml.common import (
-    Form, Label, Input, Button, Html, Head, Body, Div, P, Title, Titled, A, Link, Meta, H1
+    Form, Label, Input, Button, Html, Head, Body, P, Title, Titled, Script, Link, Meta, H1
 )
 import re
 
 # for docker
-app, rt = fast_app(static_path="static") # type: ignore
+# app, rt = fast_app(static_path="static") # type: ignore
 
 # for local
-# app, rt = fast_app(static_path="app/static") # type: ignore
+app, rt = fast_app(static_path="app/static") # type: ignore
 
 temperature_form = Form(
     method="post",
@@ -84,6 +84,11 @@ def convert_temperature(temperature:str, conversion:str):
             Head(
                 Title("Error"),
                 Meta(name="viewport", content="width=device-width, initial-scale=1"),
+                Script("""
+                function homePage() {
+                        window.location.href = "/";
+                   }
+                   """),
                 Link(rel="stylesheet", href="styles.css"),
                 Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
                 Link(rel="icon", href="images/favicon.png", type="image/png"),
@@ -92,7 +97,7 @@ def convert_temperature(temperature:str, conversion:str):
                 Titled("Invalid Input"),
                 P("Please enter a valid floating-point number for the temperature."),
                 Button(
-                    A("Return to Form", href="/"),
+                    "Return to Form", onclick="homePage()",
                 ),
             )
         )
@@ -125,6 +130,11 @@ def convert_temperature(temperature:str, conversion:str):
         Head(
             Title("Conversion Results"),
             Meta(name="viewport", content="width=device-width, initial-scale=1"),
+            Script("""
+                function homePage() {
+                        window.location.href = "/";
+                   }
+                   """),
             Link(rel="stylesheet", href="styles.css"),
             Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
             Link(rel="icon", href="images/favicon.png", type="image/png"),
@@ -133,11 +143,12 @@ def convert_temperature(temperature:str, conversion:str):
             H1("Conversion Results"),
             P(result),
             Button(
-                A("Return to Form", href="/"),
+                "Return to Form", onclick="homePage()",
                 style="margin-top: 1.25rem;",
-            )
+            ),
         )
     )
+
 
 if __name__ == '__main__':
     # Important: Use host='0.0.0.0' to make the server accessible outside the container
