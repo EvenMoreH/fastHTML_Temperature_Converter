@@ -5,10 +5,10 @@ from fasthtml.common import (
 import re
 
 # for docker
-# app, rt = fast_app(static_path="static") # type: ignore
+app, rt = fast_app(static_path="static") # type: ignore
 
 # for local
-app, rt = fast_app(static_path="app/static") # type: ignore
+# app, rt = fast_app(static_path="app/static") # type: ignore
 
 temperature_form = Form(
     method="post",
